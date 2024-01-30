@@ -1,0 +1,17 @@
+.cars-header {
+  height: 90px;
+  width: 100%;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  background-color: var(--blue);
+}
+
+.cars-header img {
+  height: 100%;
+}
+
+.cars-header h1 {
+  color: var(--white);
+}
