@@ -39,3 +39,7 @@
   gap: 40px;
   flex-wrap: wrap;
 }
+
+.App .cars-main-content .cars-card {
+  width: 300px;
+}

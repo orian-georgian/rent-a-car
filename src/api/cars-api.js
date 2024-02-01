@@ -48,17 +48,6 @@ export const fetchData = async () => {
         data: cars,
         isOk: true,
       });
-    }, 3000);
-  });
-};
-
-export const removeCarById = async (id) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        data: cars.filter((car) => car.id !== id),
-        isOk: true,
-      });
-    }, 1000);
+    }, 300);
   });
 };

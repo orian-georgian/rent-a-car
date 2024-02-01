@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "react-bootstrap/Button";
 
 import { useState } from "react";
 
@@ -27,17 +27,12 @@ function Header({ cars }) {
       )}
       <h1>{title}</h1>
 
-      <Button
-        variant="outlined"
-        color="default"
-        buttonText="Change title"
-        onClick={handleChangeTitle}
-      />
-      <Button
-        color="danger"
-        buttonText="Toggle Logo"
-        onClick={handleToggleLogo}
-      />
+      <Button variant="warning" onClick={handleChangeTitle}>
+        Change title
+      </Button>
+      <Button variant="outline-info" onClick={handleToggleLogo}>
+        Toggle Logo
+      </Button>
       <div
         style={{
           marginLeft: "auto",

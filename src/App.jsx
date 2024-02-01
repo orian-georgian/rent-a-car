@@ -4,8 +4,9 @@ import Footer from "./components/Footer/Footer";
 import MainContent from "./components/MainContent";
 
 import { useState, useEffect } from "react";
-import { fetchData, removeCarById } from "./api/cars-api";
+import { fetchData } from "./api/cars-api";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
@@ -13,15 +14,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("Cars are loading...");
 
-  const handleDeleteItem = async (id) => {
-    setIsLoading(true);
-    setLoadingMessage("Removing car...");
-    const { isOk, data } = await removeCarById(id);
-
-    if (isOk) {
-      setCars(data);
-      setIsLoading(false);
-    }
+  const handleDeleteItem = (id) => {
+    setCars((prevState) => prevState.filter((car) => car.id !== id));
   };
 
   const getData = async () => {
@@ -41,6 +35,12 @@ function App() {
     );
   };
 
+  const handleAddNewCar = (car) => {
+    setCars((prevState) => {
+      return [...prevState, car];
+    });
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -56,6 +56,7 @@ function App() {
           loadingMessage={loadingMessage}
           onDeleteItem={handleDeleteItem}
           onSelectItem={handleSelectItem}
+          onAddNewCar={handleAddNewCar}
         />
       </div>
       <Footer />
