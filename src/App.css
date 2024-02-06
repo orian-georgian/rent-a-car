@@ -25,11 +25,19 @@
 .App .cars-sidebar .cars-list-item {
   padding: 10px 20px;
   background-color: var(--blue);
-  color: var(--white);
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
+}
+
+.App .cars-sidebar .cars-list-item:hover {
+  background-color: var(--dark-blue);
+}
+
+.App .cars-sidebar .cars-list-item a {
+  color: var(--white);
+  text-decoration: none;
 }
 
 .App .cars-main-content {
@@ -42,4 +50,25 @@
 
 .App .cars-main-content .cars-card {
   width: 300px;
+  cursor: pointer;
+  transition: all 0.3;
+}
+
+.App .cars-main-content .cars-card:hover {
+  -webkit-box-shadow: 3px 3px 15px 0px var(--hoverGray);
+  -moz-box-shadow: 3px 3px 15px 0px var(--hoverGray);
+  box-shadow: 3px 3px 15px 0px var(--hoverGray);
+}
+
+.App .card-details img {
+  height: 500px;
+}
+
+.carousel-control-next,
+.carousel-control-previous {
+  color: var(--black);
+}
+
+.w-100 {
+  width: 100%;
 }

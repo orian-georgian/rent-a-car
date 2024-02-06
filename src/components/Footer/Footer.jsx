@@ -1,8 +1,8 @@
-import "./Footer.css";
+import styles from "./Footer.module.css";
 
 function Footer() {
   return (
-    <footer className="cars-footer">
+    <footer className={styles.carsFooter}>
       <p>Copyright 2024</p>
     </footer>
   );

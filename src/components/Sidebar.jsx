@@ -5,9 +5,9 @@ function Sidebar() {
     <aside className="cars-sidebar">
       <nav>
         <ul>
-          <NavItem text="Cars" />
-          <NavItem text="About" />
-          <NavItem text="Contact" />
+          <NavItem path="/" text="Cars" />
+          <NavItem path="/team" text="Team" />
+          <NavItem path="/contact" text="Contact" />
         </ul>
       </nav>
     </aside>

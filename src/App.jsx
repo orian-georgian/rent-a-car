@@ -2,6 +2,11 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer/Footer";
 import MainContent from "./components/MainContent";
+import Team from "./components/Team/Team";
+import Contact from "./components/Contact/Contact";
+import CardDetails from "./components/CardDetails/CardDetails";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import { fetchData } from "./api/cars-api";
@@ -46,21 +51,34 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header cars={cars} />
-      <div className="app-row">
-        <Sidebar />
-        <MainContent
-          cars={cars}
-          isLoading={isLoading}
-          loadingMessage={loadingMessage}
-          onDeleteItem={handleDeleteItem}
-          onSelectItem={handleSelectItem}
-          onAddNewCar={handleAddNewCar}
-        />
+    <BrowserRouter>
+      <div className="App">
+        <Header cars={cars} />
+        <div className="app-row">
+          <Sidebar />
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <MainContent
+                  cars={cars}
+                  isLoading={isLoading}
+                  loadingMessage={loadingMessage}
+                  onDeleteItem={handleDeleteItem}
+                  onSelectItem={handleSelectItem}
+                  onAddNewCar={handleAddNewCar}
+                />
+              }
+            />
+            <Route path="/team" element={<Team />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/cars/:cardId" element={<CardDetails />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 
