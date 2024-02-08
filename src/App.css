@@ -6,12 +6,17 @@
   width: 100%;
 }
 
+.App .mt-auto {
+  margin-top: auto;
+}
+
 .App .app-row {
   display: flex;
 }
 
 .App .cars-sidebar {
   width: 300px;
+  flex: 0 0 300px;
   min-height: 600px;
   padding: 30px;
   background-color: var(--gray);
@@ -51,13 +56,24 @@
 .App .cars-main-content .cars-card {
   width: 300px;
   cursor: pointer;
-  transition: all 0.3;
+  transition: all 0.3s ease-in;
 }
 
-.App .cars-main-content .cars-card:hover {
-  -webkit-box-shadow: 3px 3px 15px 0px var(--hoverGray);
-  -moz-box-shadow: 3px 3px 15px 0px var(--hoverGray);
-  box-shadow: 3px 3px 15px 0px var(--hoverGray);
+.App .cars-main-content .cars-card:last-child {
+  border: none;
+}
+
+.App .cars-main-content .cars-card:not(:last-child):hover {
+  background-color: var(--hoverGray);
+}
+
+.App .cars-main-content .cars-card .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.App .card-details {
+  position: relative;
 }
 
 .App .card-details img {

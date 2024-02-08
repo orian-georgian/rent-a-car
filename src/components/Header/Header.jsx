@@ -1,13 +1,14 @@
 import Button from "react-bootstrap/Button";
 
+import RentalCart from "../RentalCart/RentalCart";
+
 import { useState } from "react";
 
 import "./Header.css";
 
-function Header({ cars }) {
+function Header() {
   const [title, setTitle] = useState("Rent-a-Car");
   const [isLogoVisible, setIsLogoVisible] = useState(true);
-  const selectedCarsNo = cars.filter((car) => car.selected).length;
 
   const handleChangeTitle = () => {
     setTitle("Changed!");
@@ -33,13 +34,7 @@ function Header({ cars }) {
       <Button variant="outline-info" onClick={handleToggleLogo}>
         Toggle Logo
       </Button>
-      <div
-        style={{
-          marginLeft: "auto",
-        }}
-      >
-        {selectedCarsNo}
-      </div>
+      <RentalCart />
     </header>
   );
 }

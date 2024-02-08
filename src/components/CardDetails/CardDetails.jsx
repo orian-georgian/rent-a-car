@@ -35,7 +35,7 @@ export default function CardDetails() {
   }
 
   return (
-    <Container className="card-details m-5">
+    <Container className="card-details p-5">
       {car.images.length > 0 && (
         <Row>
           <Col>

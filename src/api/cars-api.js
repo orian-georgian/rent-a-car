@@ -3,8 +3,7 @@ const cars = [
     id: "f32463264d372434d32423",
     title: "Ferarri",
     price: 499,
-    imageUrl:
-      "https://pics.clipartpng.com/Red_Ferrari_Car_PNG_Clip_Art-2649.png",
+    imageUrl: "https://www.picng.com/upload/ferrari/png_ferrari_20175.png",
     selected: false,
     images: [],
     description: null,
@@ -42,21 +41,21 @@ const cars = [
   },
   {
     id: "f324632eere434d324235",
-    title: "Ferarri TT",
-    price: 499,
+    title: "Dacia Duster",
+    price: 66.23,
     selected: false,
     imageUrl:
-      "https://pics.clipartpng.com/Red_Ferrari_Car_PNG_Clip_Art-2649.png",
+      "https://www.dacia.ro/agg/vn/unique/grade_carrousel_main_1_small/grade_carrousel_1.png?uri=https%3A%2F%2Fro.co.rplug.renault.com%2Fproduct%2Fmodel%2FJD1%2Fnoua-dacia-duster%2Fc%2FA-ENS_0MDL2PSP1_-TEENZ",
     images: [],
     description: null,
   },
   {
     id: "f32463264d372443d32423",
-    title: "Ferarri 555",
-    price: 499,
+    title: "Nissan Ariya",
+    price: 123,
     selected: false,
     imageUrl:
-      "https://pics.clipartpng.com/Red_Ferrari_Car_PNG_Clip_Art-2649.png",
+      "https://www.greenncap.com/wp-content/uploads/nissan-ariya-2023-0108-478x320.png",
     images: [],
     description: null,
   },
@@ -69,7 +68,7 @@ export const fetchData = async () => {
         data: cars,
         isOk: true,
       });
-    }, 300);
+    }, 1500);
   });
 };
 
@@ -89,6 +88,6 @@ export const fetchCarById = async (id) => {
           isOk: false,
         });
       }
-    }, 300);
+    }, 1500);
   });
 };

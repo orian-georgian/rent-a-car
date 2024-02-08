@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 
 export default function ConfirmationModal({
-  cardId,
   isVisible,
   title,
   description,
@@ -13,11 +12,13 @@ export default function ConfirmationModal({
   onConfirm,
   onCancel,
 }) {
-  const handleConfirm = () => {
-    onConfirm(cardId);
+  const handleConfirm = (event) => {
+    event.stopPropagation();
+    onConfirm();
   };
 
-  const handleCancel = () => {
+  const handleCancel = (event) => {
+    event.stopPropagation();
     onCancel();
   };
 

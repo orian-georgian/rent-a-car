@@ -17,7 +17,7 @@ const Loader = ({ message }) => {
 
   return (
     <div className="cars-loader">
-      <img src="/images/loader.gif" alt="Loaging car gif" />
+      <img src="/images/loader.gif" alt="Loading car gif" />
       {message && <p>{message}</p>}
     </div>
   );
