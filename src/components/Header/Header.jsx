@@ -2,37 +2,33 @@ import Button from "react-bootstrap/Button";
 
 import RentalCart from "../RentalCart/RentalCart";
 
-import { useState } from "react";
+import { useContext } from "react";
+import { SharedContext } from "../../context/SharedContext";
 
 import "./Header.css";
 
 function Header() {
-  const [title, setTitle] = useState("Rent-a-Car");
-  const [isLogoVisible, setIsLogoVisible] = useState(true);
+  const { changeAddCarVisibility } = useContext(SharedContext);
 
-  const handleChangeTitle = () => {
-    setTitle("Changed!");
-  };
-
-  const handleToggleLogo = () => {
-    setIsLogoVisible((currentState) => !currentState);
+  const handleOpenAddCar = () => {
+    changeAddCarVisibility(true);
   };
 
   return (
     <header className="cars-header">
-      {isLogoVisible && (
-        <img
-          src="https://static.vecteezy.com/system/resources/previews/001/193/930/non_2x/vintage-car-png.png"
-          alt="Rent a car logo"
-        />
-      )}
-      <h1>{title}</h1>
+      <img
+        src="https://static.vecteezy.com/system/resources/previews/001/193/930/non_2x/vintage-car-png.png"
+        alt="Rent a car logo"
+      />
 
-      <Button variant="warning" onClick={handleChangeTitle}>
-        Change title
-      </Button>
-      <Button variant="outline-info" onClick={handleToggleLogo}>
-        Toggle Logo
+      <h1>Rent a Car</h1>
+
+      <Button
+        className="ms-auto"
+        variant="secondary"
+        onClick={handleOpenAddCar}
+      >
+        Add new car
       </Button>
       <RentalCart />
     </header>

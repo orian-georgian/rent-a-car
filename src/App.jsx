@@ -9,6 +9,8 @@ import CardDetails from "./components/CardDetails/CardDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { CarsProvider } from "./context/CarsContext";
+import { FormProvider } from "./context/FormContext";
+import { SharedProvider } from "./context/SharedContext";
 
 //import { useState, useEffect } from "react";
 //import { fetchData } from "./api/cars-api";
@@ -61,24 +63,28 @@ function App() {
   }, []); */
 
   return (
-    <CarsProvider>
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-          <div className="app-row">
-            <Sidebar />
+    <SharedProvider>
+      <FormProvider>
+        <CarsProvider>
+          <BrowserRouter>
+            <div className="App">
+              <Header />
+              <div className="app-row">
+                <Sidebar />
 
-            <Routes>
-              <Route path="/" element={<MainContent />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/cars/:cardId" element={<CardDetails />} />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </CarsProvider>
+                <Routes>
+                  <Route path="/" element={<MainContent />} />
+                  <Route path="/team" element={<Team />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/cars/:cardId" element={<CardDetails />} />
+                </Routes>
+              </div>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </CarsProvider>
+      </FormProvider>
+    </SharedProvider>
   );
 }
 

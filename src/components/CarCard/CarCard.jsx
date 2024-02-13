@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { CarsContext } from "../../context/CarsContext";
 
-function CarCard({ id, imageUrl, title, price, selected }) {
+function CarCard({ id, imageUrl, title, price, selected, cardColor }) {
   const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
   const navigate = useNavigate();
   const { deleteCar, selectCar } = useContext(CarsContext);
@@ -39,7 +39,13 @@ function CarCard({ id, imageUrl, title, price, selected }) {
   };
 
   return (
-    <Card className="cars-card p-3" onClick={handleCardClick}>
+    <Card
+      className="cars-card p-3"
+      style={{
+        backgroundColor: cardColor,
+      }}
+      onClick={handleCardClick}
+    >
       <Card.Img width="100%" variant="top" src={imageUrl} alt={title} />
       <Card.Body>
         <Card.Title className="mt-auto">

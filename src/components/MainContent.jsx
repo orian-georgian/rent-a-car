@@ -1,13 +1,13 @@
 import CarCard from "./CarCard/CarCard";
 import AddCarForm from "./AddCarForm/AddCarForm";
 
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Placeholder from "react-bootstrap/Placeholder";
 
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 import { CarsContext } from "../context/CarsContext";
+import { SharedContext } from "../context/SharedContext";
 
 import { fetchData } from "../api/cars-api";
 
@@ -37,16 +37,12 @@ const cardPlaceholders = [
 ];
 
 function MainContent() {
-  const [isVisible, setIsVisible] = useState(false);
   const { cars, isLoading, setIsLoading, loadCars, addNewCar } =
     useContext(CarsContext);
-
-  const handleOpenAddCar = () => {
-    setIsVisible(true);
-  };
+  const { isAddCarVisible, changeAddCarVisibility } = useContext(SharedContext);
 
   const handleCloseAddCar = () => {
-    setIsVisible(false);
+    changeAddCarVisibility(false);
   };
 
   const getData = async () => {
@@ -75,15 +71,8 @@ function MainContent() {
           {cars.map((car) => (
             <CarCard key={car.id} {...car} />
           ))}
-          <Card className="cars-card p-3">
-            <Card.Body className="d-flex justify-content-center align-items-center">
-              <Button variant="primary" onClick={handleOpenAddCar}>
-                Add new car
-              </Button>
-            </Card.Body>
-          </Card>
           <AddCarForm
-            isVisible={isVisible}
+            isVisible={isAddCarVisible}
             onCancel={handleCloseAddCar}
             onSave={handleAddNewCar}
           />

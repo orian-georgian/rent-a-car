@@ -59,11 +59,7 @@
   transition: all 0.3s ease-in;
 }
 
-.App .cars-main-content .cars-card:last-child {
-  border: none;
-}
-
-.App .cars-main-content .cars-card:not(:last-child):hover {
+.App .cars-main-content .cars-card:hover {
   background-color: var(--hoverGray);
 }
 

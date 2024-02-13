@@ -2,28 +2,25 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import { useState } from "react";
+import { useContext } from "react";
+import { FormContext } from "../../context/FormContext";
 
 import getRandomId from "../../utils/random-id";
 
 import "./AddCarForm.css";
 
 export default function AddCarForm({ isVisible, onCancel, onSave }) {
-  const [validated, setValidated] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
+  const { formValues, changeValue, reset, changeValidity } =
+    useContext(FormContext);
 
-  const handleImageUrlChange = (event) => {
-    setImageUrl(event.target.value);
+  const handleValueChange = ({ target: { name, value } }) => {
+    changeValue({ name, value });
   };
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
+  const handleReset = (event) => {
+    event.preventDefault();
 
-  const handlePriceChange = (event) => {
-    setPrice(event.target.value);
+    reset();
   };
 
   const handleSubmit = (event) => {
@@ -32,36 +29,20 @@ export default function AddCarForm({ isVisible, onCancel, onSave }) {
     const form = event.currentTarget;
     const isValid = form.checkValidity();
 
-    function convertToObject(obj) {
-      obj = {};
-      for (var p in form) {
-        obj[p] = form[p];
-      }
-      return obj;
-    }
-
-    var result = Object.assign(convertToObject(form), { www: 1 });
-
-    console.log(result);
-
-    /* if (isValid) {
+    if (isValid) {
       const id = getRandomId(20);
 
       onSave({
         id,
-        imageUrl,
-        title,
-        price,
+        ...formValues,
       });
 
+      reset();
+
       onCancel();
+    }
 
-      setImageUrl("");
-      setTitle("");
-      setPrice(0);
-    } */
-
-    setValidated(true);
+    changeValidity(true);
   };
 
   return (
@@ -73,7 +54,7 @@ export default function AddCarForm({ isVisible, onCancel, onSave }) {
         <Form
           className="d-flex flex-column h-100"
           noValidate
-          validated={validated}
+          validated={formValues.validated}
           onSubmit={handleSubmit}
         >
           <Form.Group className="mb-3">
@@ -81,10 +62,11 @@ export default function AddCarForm({ isVisible, onCancel, onSave }) {
             <Form.Control
               type="url"
               size="lg"
+              name="imageUrl"
               placeholder="Add a valid image url"
               required
-              value={imageUrl}
-              onChange={handleImageUrlChange}
+              value={formValues.imageUrl}
+              onChange={handleValueChange}
             />
             <Form.Control.Feedback type="invalid">
               The url is not valid
@@ -96,9 +78,10 @@ export default function AddCarForm({ isVisible, onCancel, onSave }) {
             <Form.Control
               type="text"
               size="lg"
+              name="title"
               placeholder="Add a car title"
-              value={title}
-              onChange={handleTitleChange}
+              value={formValues.title}
+              onChange={handleValueChange}
               required
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
@@ -111,9 +94,10 @@ export default function AddCarForm({ isVisible, onCancel, onSave }) {
             <Form.Control
               type="number"
               size="lg"
+              name="price"
               placeholder="Add a price"
-              value={price}
-              onChange={handlePriceChange}
+              value={formValues.price}
+              onChange={handleValueChange}
               min={10}
               max={900}
             ></Form.Control>
@@ -122,9 +106,43 @@ export default function AddCarForm({ isVisible, onCancel, onSave }) {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3 mt-auto">
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              size="lg"
+              name="description"
+              placeholder="Add a description"
+              value={formValues.description}
+              onChange={handleValueChange}
+              rows={5}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Card Color</Form.Label>
+            <Form.Control
+              type="color"
+              size="lg"
+              name="cardColor"
+              value={formValues.cardColor}
+              onChange={handleValueChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3 mt-auto d-flex">
             <Button type="submit" size="lg" variant="primary">
               Add Car
+            </Button>
+
+            <Button
+              className="ms-auto"
+              type="button"
+              size="lg"
+              variant="secondary"
+              onClick={handleReset}
+            >
+              Reset
             </Button>
           </Form.Group>
         </Form>

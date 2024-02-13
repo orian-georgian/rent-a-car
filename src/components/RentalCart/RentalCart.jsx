@@ -15,7 +15,7 @@ export default function RentalCart() {
   };
 
   return (
-    <Dropdown className="ms-auto">
+    <Dropdown>
       <Dropdown.Toggle
         id="dropdown-button-dark-example1"
         variant="info"
