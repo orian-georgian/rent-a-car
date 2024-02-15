@@ -1,4 +1,4 @@
-const cars = [
+export const cars = [
   {
     id: "f32463264d372434d32423",
     title: "Ferarri",

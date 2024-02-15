@@ -6,6 +6,8 @@ import { useContext } from "react";
 
 import { CarsContext } from "../../context/CarsContext";
 
+import "./RentalCart.css";
+
 export default function RentalCart() {
   const { cars, deleteCartItem } = useContext(CarsContext);
   const selectedCars = cars.filter((car) => car.selected);
@@ -15,13 +17,16 @@ export default function RentalCart() {
   };
 
   return (
-    <Dropdown>
+    <Dropdown className="rental-cart">
       <Dropdown.Toggle
         id="dropdown-button-dark-example1"
-        variant="info"
+        variant="light"
         disabled={selectedCars.length === 0}
       >
-        <FaCartPlus /> <span>({selectedCars.length})</span>
+        <Stack direction="horizontal" gap={3}>
+          <FaCartPlus />
+          <div>({selectedCars.length})</div>
+        </Stack>
       </Dropdown.Toggle>
 
       <Dropdown.Menu>

@@ -1,46 +1,62 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-import Carousel from "react-bootstrap/Carousel";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  Placeholder,
+  Carousel,
+} from "react-bootstrap";
 
-import Loader from "../Loader/Loader";
+import useFetch from "../../hooks/useFetch";
 
-import { fetchCarById } from "../../api/cars-api";
+const CardDetailsPlaceholder = () => (
+  <Container className="p-5">
+    <Row>
+      <Col>
+        <Image src="/images/placeholder.png" />
+      </Col>
+    </Row>
+    <Row className="mb-3">
+      <Col>
+        <Placeholder as={"h1"} xs={6} size="lg" />
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />
+        <Placeholder xs={6} /> <Placeholder xs={8} />
+        <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />
+        <Placeholder xs={6} /> <Placeholder xs={8} />
+        <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />
+        <Placeholder xs={6} /> <Placeholder xs={8} />
+        <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />
+        <Placeholder xs={6} /> <Placeholder xs={8} />
+      </Col>
+    </Row>
+  </Container>
+);
 
 export default function CardDetails() {
-  const [car, setCar] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const { cardId } = useParams();
+  const { data, loading } = useFetch("/cars/data/item/btId", cardId);
 
-  const fetchData = async () => {
-    const { isOk, data } = await fetchCarById(cardId);
-
-    if (isOk) {
-      setCar(data);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (isLoading) {
-    return <Loader message="The car details are loading" />;
+  if (loading) {
+    return <CardDetailsPlaceholder />;
   }
 
-  if (!car) {
+  if (!data) {
     return <div>Car not available!</div>;
   }
 
   return (
     <Container className="card-details p-5">
-      {car.images.length > 0 && (
+      {data.images.length > 0 && (
         <Row>
           <Col>
             <Carousel data-bs-theme="dark">
-              {car.images.map((image) => (
+              {data.images.map((image) => (
                 <Carousel.Item key={image}>
                   <Image src={image} fluid />
                 </Carousel.Item>
@@ -50,10 +66,10 @@ export default function CardDetails() {
         </Row>
       )}
       <Row className="mb-5">
-        <h1 className="h1">{car.title}</h1>
+        <h1 className="h1">{data.title}</h1>
       </Row>
       <Row className="mb-5">
-        <Col>{car.description}</Col>
+        <Col>{data.description}</Col>
       </Row>
     </Container>
   );

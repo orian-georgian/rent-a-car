@@ -4,6 +4,7 @@ import RentalCart from "../RentalCart/RentalCart";
 
 import { useContext } from "react";
 import { SharedContext } from "../../context/SharedContext";
+import IdleStatus from "../IdleStatus/IdleStatus";
 
 import "./Header.css";
 
@@ -17,17 +18,14 @@ function Header() {
   return (
     <header className="cars-header">
       <img
-        src="https://static.vecteezy.com/system/resources/previews/001/193/930/non_2x/vintage-car-png.png"
+        src="https://purepng.com/public/uploads/large/purepng.com-yellow-ferrari-front-view-carcarferrarivehicletransport-9615246642488rjeh.png"
         alt="Rent a car logo"
       />
 
-      <h1>Rent a Car</h1>
+      <h1>Rent-a-Car</h1>
 
-      <Button
-        className="ms-auto"
-        variant="secondary"
-        onClick={handleOpenAddCar}
-      >
+      <IdleStatus />
+      <Button className="ms-auto" variant="warning" onClick={handleOpenAddCar}>
         Add new car
       </Button>
       <RentalCart />
